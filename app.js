@@ -53,4 +53,4 @@ app.get('/profile', GetProfile);
 app.post('/add-message', AddMessage);
 
 
-export default app;
+module.exports = app;
