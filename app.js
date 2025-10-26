@@ -35,9 +35,20 @@ app.use(cookieParser()); // Parse cookies from incoming requests
 
 // MongoDB connection
 const dbURI = process.env.MONGO_URI;
-mongoose.connect(dbURI)
-    .then(() => console.log(`Backend server listening on port ${port}`))
-    .catch(err => console.log(err));
+const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  await mongoose.connect(process.env.MONGODB_URI);
+};
+
+export default async function handler() {
+  try {
+    await connectDB();
+    return app;
+  } catch (err) {
+    console.error("MongoDB error:", err);
+    return null;
+  }
+}
 
 // Route to create a new user (already implemented)
 app.post('/create-user', NewUser);
