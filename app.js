@@ -40,7 +40,7 @@ const connectDB = async () => {
   await mongoose.connect(process.env.MONGODB_URI);
 };
 
-export default async function handler() {
+module.exports = async function handler() {
   try {
     await connectDB();
     return app;
