@@ -13,8 +13,10 @@ const cors = require('cors');
 
 // CORS configuration
 const corsOptions = {
-    origin: 'http://localhost:5173', // Replace with your frontend URL
-    credentials: true // Enable credentials
+    origin: ['http://localhost:5173', 'https://anonymous-app-frontend.vercel.app'], // Allow both local and deployed frontend
+    credentials: true, // Enable credentials
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
 };
 
 
