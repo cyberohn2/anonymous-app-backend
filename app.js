@@ -37,7 +37,7 @@ app.use(cookieParser()); // Parse cookies from incoming requests
 const dbURI = process.env.MONGO_URI;
 const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) return;
-  await mongoose.connect(process.env.MONGODB_URI);
+  await mongoose.connect(dbURI);
 };
 
 module.exports = async function handler() {
