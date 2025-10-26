@@ -36,9 +36,7 @@ app.use(cookieParser()); // Parse cookies from incoming requests
 // MongoDB connection
 const dbURI = process.env.MONGO_URI;
 mongoose.connect(dbURI)
-    .then(() => app.listen(port, () => {
-        console.log(`Backend server listening on port ${port}`);
-    }))
+    .then(() => console.log(`Backend server listening on port ${port}`))
     .catch(err => console.log(err));
 
 // Route to create a new user (already implemented)
@@ -55,3 +53,4 @@ app.get('/profile', GetProfile);
 app.post('/add-message', AddMessage);
 
 
+export default app;
