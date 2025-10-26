@@ -9,6 +9,15 @@ const VerifyUser = require('./Routes/VerifyUser');
 const VerifyToken = require('./Routes/VerifyToken');
 const GetProfile = require('./Routes/GetProfile');
 const AddMessage = require('./Routes/AddMessage');
+const cors = require('cors');
+
+// CORS configuration
+const corsOptions = {
+    origin: 'http://localhost:5173', // Replace with your frontend URL
+    credentials: true // Enable credentials
+};
+
+
 
 dotenv.config(); // Initialize dotenv
 
@@ -17,6 +26,7 @@ const port = process.env.PORT || 3001;
 
 
 // Middleware
+app.use(cors(corsOptions)); // Enable CORS for all routes
 app.use(express.json()); // Enable JSON parsing for incoming requests
 app.use(cookieParser()); // Parse cookies from incoming requests
 
@@ -42,7 +52,4 @@ app.get('/profile', GetProfile);
 
 app.post('/add-message', AddMessage);
 
-// Fallback route to serve the React app
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
+

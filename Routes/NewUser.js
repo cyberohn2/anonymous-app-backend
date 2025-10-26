@@ -19,7 +19,6 @@ const NewUser = async (req, res) =>{
 
         // Save the new user to the database
         const savedUser = await newUser.save();
-        console.log("User created:", savedUser);
 
         // Clear existing JWT cookie
         res.clearCookie('jwt', {

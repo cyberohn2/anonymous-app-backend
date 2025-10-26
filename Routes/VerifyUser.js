@@ -11,13 +11,11 @@ const VerifyUser = async (req, res) =>{
     try {
       const user = await anonymousAppUser.findOne({ username });
       if (!user) {
-          console.log("no user")
         return res.status(401).json({ message: 'Invalid credentials' });
       }
   
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
-        console.log("wrong password")
         return res.status(401).json({ message: 'Invalid credentials' });
       }
   
@@ -38,7 +36,6 @@ const VerifyUser = async (req, res) =>{
         email: user.email,
         messages: user.messages,
       });
-      console.log("successfull ")
     } catch (err) {
       res.status(500).json({ message: 'Server error' });
     }
